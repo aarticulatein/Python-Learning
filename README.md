@@ -31,17 +31,20 @@ import pandas as pd
 ## Task A: Load and inspect data
 ### Open the notebook, load the CSV, check shape, columns, data types, and missing values.
 
+```python
 df = pd.read_csv("marketing_sales_math.csv") 
 df.shape
 df.columns
 print(type(df))
 df.isnull().sum()
+```
 
 
 ## Task B: Descriptive statistics recap
--Calculate mean, median, mode, range, and standard deviation for selected variables.
+### Calculate mean, median, mode, range, and standard deviation for selected variables.
 
 ### mean, median, standard deviation
+```python
 print(df[['advertising_spend','website_visits','profit']].agg(['mean', 'median', 'std']))
 
 ### mode
@@ -49,12 +52,13 @@ print("Mode of performance segment:", df['performance_segment'].mode()[0])
 
 ### Range
 print("Range of profit:",df['profit'].max()-df['profit'].min())
-
+```
 
 ## Task C: Linear algebra view
 ### Represent one row as a vector and select numerical columns as a matrix.
 
 ### Representing one row as a Vector
+```python
 vector_day1=df.loc[0,['advertising_spend','website_visits','price','units_sold','revenue']].values
 print(vector_day1)
 
@@ -68,12 +72,13 @@ matrix.shape
 ### Display a scaler
 scaler_advertising_spend_day1= df.loc[0, 'advertising_spend']
 print('Advertising Spend on Day 1:',scaler_advertising_spend_day1)
-
+```
 
 ## Task D: Weighted score
 ### Use a dot product to create a simple business score from standardized variables.
 
 ### Selected Variables
+```python
 features = ['advertising_spend',
             'website_visits',
             'units_sold',
@@ -95,12 +100,13 @@ business_score=np.dot(x_scaled,weights)
 ### Add the business_score to the DataFrame as a new column
 df['business_score'] = business_score
 df[['business_score']].head()
-
+```
 
 ## Task E: Change and derivatives
 ### Use .diff() to calculate daily change in revenue and profit.
 
 ### calculated the day to day change in revenue 
+```python
 df['revenue_change']= df['revenue'].diff()
 print(df[['revenue','revenue_change']].head())
 
@@ -116,27 +122,28 @@ print(best_revenue_day[['day','revenue','revenue_change']])
 worst_revenue_day= df.loc[df['revenue_change'].idxmin()]
 print("Largest revenue decrease:")
 print(worst_revenue_day[['day','revenue','revenue_change']])
-
+```
 
 ## Task F: Functions and transformations
 ### Use log transformation for website visits and interpret why it is useful.
-
+```python
 df['log_webiste_visits']= np.log(df['website_visits'])
 df[['website_visits','log_webiste_visits']].head()
-
+```
 
 ## Task G: Integration as accumulation
 ### Use cumulative sum to calculate cumulative revenue and cumulative profit.
-
+```python
 df['cumulative_revenue'] = df['revenue'].cumsum()
 df['cumulative_profit'] = df['profit'].cumsum()
 df[['revenue','cumulative_revenue','profit', 'cumulative_profit']].head()
-
+```
 
 ## Task H: PCA
 ### Standardize numerical features, apply PCA, visualize PC1 and PC2, and interpret explained variance.
 
 ### Select numerical features
+```python
 features = ['advertising_spend','website_visits','price','units_sold','revenue', 'cost', 'profit']
 X = df[features]
 
@@ -171,10 +178,11 @@ plt.title('Principal Component Analysis of Marketing Data')
 plt.legend(title='Profit Segment')
 plt.grid(True)
 plt.show()  
-
-![PCA Chart](pca_chart.png)
+```
+![PCA Chart](Screenshot)
 
 ### Explained Variance
+```python
 print(pca.explained_variance_ratio_)
 print("Explained variance ratio:")
 print("PC1:", round(pca.explained_variance_ratio_[0], 3))
@@ -184,5 +192,5 @@ print("Total:", round(pca.explained_variance_ratio_.sum(), 3))
 ### PCA loadings: which original features contribute to each component?
 loadings = pd.DataFrame(pca.components_.T, columns=['PC1_loading','PC2_loading'],index=features)
 loadings
-
+```
 
