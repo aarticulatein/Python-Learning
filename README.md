@@ -42,9 +42,8 @@ df.isnull().sum()
 
 ## Task B: Descriptive statistics recap
 ### Calculate mean, median, mode, range, and standard deviation for selected variables.
-
-### mean, median, standard deviation
 ```python
+### mean, median, standard deviation
 print(df[['advertising_spend','website_visits','profit']].agg(['mean', 'median', 'std']))
 
 ### mode
@@ -56,9 +55,8 @@ print("Range of profit:",df['profit'].max()-df['profit'].min())
 
 ## Task C: Linear algebra view
 ### Represent one row as a vector and select numerical columns as a matrix.
-
-### Representing one row as a Vector
 ```python
+### Representing one row as a Vector
 vector_day1=df.loc[0,['advertising_spend','website_visits','price','units_sold','revenue']].values
 print(vector_day1)
 
@@ -76,9 +74,8 @@ print('Advertising Spend on Day 1:',scaler_advertising_spend_day1)
 
 ## Task D: Weighted score
 ### Use a dot product to create a simple business score from standardized variables.
-
-### Selected Variables
 ```python
+### Selected Variables
 features = ['advertising_spend',
             'website_visits',
             'units_sold',
@@ -104,9 +101,8 @@ df[['business_score']].head()
 
 ## Task E: Change and derivatives
 ### Use .diff() to calculate daily change in revenue and profit.
-
-### calculated the day to day change in revenue 
 ```python
+### calculated the day to day change in revenue 
 df['revenue_change']= df['revenue'].diff()
 print(df[['revenue','revenue_change']].head())
 
@@ -141,9 +137,8 @@ df[['revenue','cumulative_revenue','profit', 'cumulative_profit']].head()
 
 ## Task H: PCA
 ### Standardize numerical features, apply PCA, visualize PC1 and PC2, and interpret explained variance.
-
-### Select numerical features
 ```python
+### Select numerical features
 features = ['advertising_spend','website_visits','price','units_sold','revenue', 'cost', 'profit']
 X = df[features]
 
@@ -179,10 +174,9 @@ plt.legend(title='Profit Segment')
 plt.grid(True)
 plt.show()  
 ```
-![PCA Chart](Screenshot)
-
-### Explained Variance
+![PCA Chart](pchart.png)
 ```python
+### Explained Variance
 print(pca.explained_variance_ratio_)
 print("Explained variance ratio:")
 print("PC1:", round(pca.explained_variance_ratio_[0], 3))
