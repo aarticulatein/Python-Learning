@@ -174,7 +174,7 @@ plt.legend(title='Profit Segment')
 plt.grid(True)
 plt.show()  
 ```
-![PCA Chart](pchart.PNG)
+![PCA Chart](pchart.png)
 ```python
 ### Explained Variance
 print(pca.explained_variance_ratio_)
