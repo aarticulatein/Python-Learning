@@ -1,4 +1,4 @@
-# Marketing Sales Data Analysis
+# Marketing Sales Data Analysis using Python with PCA
 
 This repository contains a Python data analysis assignment completed as part of my Data Analytics coursework.
 
