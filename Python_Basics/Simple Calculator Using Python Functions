@@ -1,0 +1,62 @@
+# Python program to create a simple calculator
+
+# 3 steps to build a calculator program
+# 1. functions for operations
+# 2. user input
+# 3. print result
+
+# Step 1: Create functions
+
+# Function to add two numbers
+def add(num1, num2):
+    return num1 + num2
+
+# Function to subtract two numbers
+def subtract(num1, num2):
+    return num1 - num2
+
+# Function to multiply two numbers
+def multiply(num1, num2):
+    return num1 * num2
+
+# Function to divide two numbers
+def divide(num1, num2):
+    return num1 / num2
+
+# Function to calculate the average of two numbers
+def avg(num1, num2):
+    return (num1 + num2) / 2
+
+# Step 2: User input
+
+print("Select an operation:"
+      "\n1. Addition"
+      "\n2. Subtraction"
+      "\n3. Multiplication"
+      "\n4. Division"
+      "\n5. Average")
+
+select = int(input("Select an operation from 1-5: "))
+
+number1 = int(input("Enter first number: "))
+number2 = int(input("Enter second number: "))
+
+# Step 3: Print the result
+
+if select == 1:
+    print(f"{number1} + {number2} =", add(number1, number2))
+
+elif select == 2:
+    print(f"{number1} - {number2} =", subtract(number1, number2))
+
+elif select == 3:
+    print(f"{number1} * {number2} =", multiply(number1, number2))
+
+elif select == 4:
+    print(f"{number1} / {number2} =", divide(number1, number2))
+
+elif select == 5:
+    print(f"({number1} + {number2}) / 2 =", avg(number1, number2))
+
+else:
+    print("Invalid operation! Please select again.")
